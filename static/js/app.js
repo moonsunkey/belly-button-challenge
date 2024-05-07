@@ -30,10 +30,27 @@ function buildCharts(sample) {
     const sample_values=result.sample_values; // Array of Sample values
 
     // Build a Bubble Chart
+    
+    const bubbleData= [{
+      x:otu_ids,
+      y:sample_values,
+      text:otu_labels,
+      mode:'markers',
+      marker: {
+        size:sample_values,
+        color:otu_ids,
+        colorscale:"Earth"
+      }
+    }]; //Build bubblechart data
 
-
+    const bubbleLayout={
+      title: "Bacteria Cultures Per Sample",
+      hovermode:"closest",
+      xaxis:{title:"OTU ID"},
+      yaxix:{title:"Number of Bacteria"}
+    };
     // Render the Bubble Chart
-
+    Plotly.newPlot("bubble",bubbleData,bubbleLayout);
 
     // For the Bar Chart, map the otu_ids to a list of strings for your yticks
 
@@ -78,3 +95,6 @@ function optionChanged(newSample) {
 
 // Initialize the dashboard
 init();
+
+
+//****** Use console.log inside of your JavaScript code to see what your data looks like at each step.
