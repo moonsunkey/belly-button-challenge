@@ -5,31 +5,29 @@ function buildMetadata(sample) {
     const result=metadata.find(item=>item.id ===parseInt(sample));//returns the first element in the array which is ID in integer
     // Filter the metadata for the object with the desired sample number
 
-    const PANEL=d3.select(`#sample-metadata`);
-    // Use d3 to select the panel with id of `#sample-metadata`
+    const PANEL=d3.select(`#sample-metadata`);// Use d3 to select the panel with id of `#sample-metadata`
+    //PANEL acts as a container in which new elements will be placed.
 
+    PANEL.html(""); // Use `.html("") to clear any existing metadata
 
-    // Use `.html("") to clear any existing metadata
-
-
-    // Inside a loop, you will need to use d3 to append new
+        // Inside a loop, you will need to use d3 to append new
     // tags for each key-value in the filtered metadata.
-
-  });
+    Object.entries(result).forEach([key,value]) => {
+      PANEL.append('h6').text(`${key.toUpperCase()}:${value}`);
+  }); //creates new <h6> html tag and appends it as a child to the 'PANEL' element. 
+      //Returns the newly created element.
 }
+
+// buildMetadata(940) //testing if buildMetaData worked
 
 // function to build both charts
 function buildCharts(sample) {
   d3.json("https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json").then((data) => {
-
-    // Get the samples field
-
-
-    // Filter the samples for the object with the desired sample number
-
-
-    // Get the otu_ids, otu_labels, and sample_values
-
+    const samples = data.samples; // Get the samples field
+    const result=samples.find(item=>item.id===sample); // Filter the samples for the object with the desired sample number
+    const otu_ids=result.otu_ids; // Array of OTU IDs
+    const otu_labels=result.otu_labels; // Array of OTU labels
+    const sample_values=result.sample_values; // Array of Sample values
 
     // Build a Bubble Chart
 
