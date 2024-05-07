@@ -1,13 +1,11 @@
 // Build the metadata panel
 function buildMetadata(sample) {
   d3.json("https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json").then((data) => {
-
-    // get the metadata field
-
-
+    const metadata=data.metadata // get the metadata field
+    const result=metadata.find(item=>item.id ===parseInt(sample));//returns the first element in the array which is ID in integer
     // Filter the metadata for the object with the desired sample number
 
-
+    const PANEL=d3.select(`#sample-metadata`);
     // Use d3 to select the panel with id of `#sample-metadata`
 
 
