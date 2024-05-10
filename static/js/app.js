@@ -2,17 +2,18 @@
 function buildMetadata(sample) {
   d3.json("https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json").then((data) => {
     const metadata=data.metadata // get the metadata field
+
     const result=metadata.find(item=>item.id ===parseInt(sample));//returns the first element in the array which is ID in integer
     // Filter the metadata for the object with the desired sample number
+
     console.log(metadata)
     console.log(result)
+
     const PANEL=d3.select(`#sample-metadata`);// Use d3 to select the panel with id of `#sample-metadata`
     //PANEL acts as a container in which new elements will be placed.
 
-    PANEL.html(""); // Use `.html("") to clear any existing metadata
-
-        // Inside a loop, you will need to use d3 to append new
-    // tags for each key-value in the filtered metadata.
+    PANEL.html(""); // Use `.html("") to clear any existing metadata, 
+    //otherwise the full set of data will keep being added every time we click
 
     Object.entries(result).forEach(([key, value]) => {
       PANEL.append("h6").text(`${key.toUpperCase()}: ${value}`);
@@ -78,15 +79,16 @@ function buildCharts(sample) {
 
 // Function to run on page load
 function init() {
-  const selector=d3.select("#selDataset"); // Use d3 to select the dropdown with id of `#selDataset`
+  const selector=d3.select("#selDataset"); // Selects the dropdown element in HTML by its ID
   d3.json("https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json").then((data) => {
 
     // Get the names field
-  const sampleNames=data.names;
+  const sampleNames=data.names; //returns an array of sample names
   sampleNames.forEach((name)=>{
-    selector.append("option").text(name).property("value".name);
-  }); // Use the list of sample names to populate the select options
-     // option for each sample name.
+    selector.append("option")// Appends an <option> element to the <select> element
+    .text(name)//sets the visible text of the option to the sample name
+    .property("value".name); // Sets the value property of the option to the sample name
+  }); 
 
   const firstSample=sampleNames[0]; // Get the first sample from the list
   buildCharts(firstSample);//Build charts with the first sample
@@ -94,7 +96,7 @@ function init() {
   });
 }
 
-// Function for event listener
+// Function for event listener based on user input (newSample)
 function optionChanged(newSample) {
   // Build charts and metadata panel each time a new sample is selected
   buildCharts(newSample);
@@ -103,5 +105,3 @@ function optionChanged(newSample) {
 
 // Initialize the dashboard
 init();
-
-//****** Use console.log inside of your JavaScript code to see what your data looks like at each step
