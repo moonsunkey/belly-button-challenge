@@ -1,84 +1,45 @@
-# belly-button-challenge
-Complete the following steps:
-## Use the D3 library to read in samples.json from the URL https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json.
+# Belly-Button Biodiversity Dashboard
 
-** utilized google chrome to look at pretty printed jason sample data. It consists of arrays like names,metadata,samples
+## Overview
 
-**metadata has key pairs with "id","ethnicity","gender","age","location",""bbtype" and "wfreq" as keys. Note "id" in metadata is an integer.
-**samples has key pairs with keys including "id","otu_ids","sample_values","otu_labels". Note "id" in samples is a string. So we need to use parseInt to convert the string format id to integer to match metadata.
+This project visualizes the bacterial data from different individuals’ belly buttons. It utilizes interactive charts to display the microbial species (also known as OTUs) found in each individual's navel.
 
-**Use Object.entries() to convert an object to an array with enumerable property [key,value] pairs to use for loop with. 
+## Features
 
-# Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
+### Metadata Panel Function
 
-Use sample_values as the values for the bar chart.
+**Data Overview**:
+- The data includes arrays such as `names`, `metadata`, and `samples`.
+- **Metadata**: Contains key-value pairs with "id", "ethnicity", "gender", "age", "location", "bbtype", and "wfreq". Note: "id" in metadata is an integer.
 
-Use otu_ids as the labels for the bar chart.
+- **Samples**: Contains "id", "otu_ids", "sample_values", and "otu_labels". Note: "id" in samples is a string, which requires conversion to an integer using `parseInt()` to match with metadata ids.
 
-Use otu_labels as the hovertext for the chart.
+**Functionality**:
+- Uses `Object.entries()` to convert an object into an array of enumerable property [key, value] pairs for looping.
 
-bar Chart
-Create a bubble chart that displays each sample.
+### Chart Functions
 
-Use otu_ids for the x values.
+#### Bubble and Horizontal Bar Chart
 
-Use sample_values for the y values.
+- **Bubble Chart**: Displays each sample's metadata to showcase an individual's demographic information.
+- **Bar Chart**: Filters and sorts the data to be used. It slices and reverses the top 10 bacterial counts to display the top 10 bacteria found in each individual.
 
-Use sample_values for the marker size.
+### Option Changed Function
 
-Use otu_ids for the marker colors.
+- Accommodates changes from user input, i.e., when selecting a new sample from the dropdown menu.
 
-Use otu_labels for the text values.
+## Dashboard Images
 
-Bubble Chart
-Display the sample's metadata, i.e., an individual's demographic information.
+Below are two example images of the dashboard showing different individual samples:
 
-Loop through each key-value pair from the metadata JSON object and create a text string.
+![Sample 940](./Images/940.png)
+![Sample 963](./Images/963.png)
 
-Append an html tag with that text to the #sample-metadata panel.
+## Deployment
 
-hw
-Update all the plots when a new sample is selected. Additionally, you are welcome to create any layout that you would like for your dashboard. An example dashboard is shown as follows:
+The dashboard is deployed on GitHub Pages and can be accessed [here](https://moonsunkey.github.io/belly-button-challenge/).
 
-hw
-Deploy your app to a free static page hosting service, such as GitHub Pages. Submit the links to your deployment and your GitHub repo. Ensure that your repository has regular commits and a thorough README.md file
+## Acknowledgements
 
-Hints
-Use console.log inside of your JavaScript code to see what your data looks like at each step.
-
-Refer to the Plotly.js documentationLinks to an external site. when building the plots.
-
-Requirements
-Bar Chart (30 points)
-Chart initializes without error (10 points)
-
-Chart updates when a new sample is selected (5 points)
-
-Chart uses Top 10 sample values as values (5 points)
-
-Chart uses otu_ids as the labels (5 points)
-
-Chart uses otu_labels as the tooltip (5 points)
-
-Bubble Charts (40 points)
-Chart initializes without error (10 points)
-
-Chart updates when a new sample is selected (5 points)
-
-Chart uses otu_ids for the x values (5 points)
-
-Chart uses otu_ids for marker colors (5 points)
-
-Chart uses sample_values for the y values (5 points)
-
-Chart uses sample_values for the marker size (5 points)
-
-Chart uses otu_labels for text values (5 points)
-
-Metadata and Deployment (30 points)
-Metadata initializes without error (10 points)
-
-Metadata updates when a new sample is selected (10 points)
-
-App Successfully Deployed to Github Pages (10 points)
-
+- **Data Parsing**: A tutor assisted with the `Object.entries`, `metadata`, and `optionChanged` functions.
+- **Chart Development**: Charts were constructed with reference to [Plotly's JavaScript documentation](https://plotly.com/javascript/) and additional support from Google searches.
